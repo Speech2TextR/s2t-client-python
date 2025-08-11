@@ -15,7 +15,7 @@ setup(
     long_description=readme(),
     long_description_content_type='text/markdown',
     url='https://speech2text.ru/',
-    packages=find_packages(),
+    packages=find_packages(exclude=['examples']),
     install_requires=['requests>=2.25.1'],
     classifiers=[
         'Programming Language :: Python :: 3.11',
