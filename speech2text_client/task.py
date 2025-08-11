@@ -24,7 +24,8 @@ class Task:
     def __init__(self, api, id_: str, data: Optional[dict] = None):
         self.__api = api
         self.__id = id_
-        self.__load_data(data)
+        if data is not None:
+            self.__load_data(data)
 
     def update(self):
         resp = self.__api.request("GET", f"/recognitions/{self.__id}").json()
