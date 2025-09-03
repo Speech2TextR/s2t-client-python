@@ -31,10 +31,10 @@ class Recognitions:
         response = self.api.request("GET", path).json()
         return response['count']
 
-    def send_file(self, path: str, options: RecognizeOptions) -> Task:
+    def send_file(self, path: str, options: RecognizeOptions, timeouts: tuple = (15, 600)) -> Task:
         files = {"file": open(path, "rb")}
         data = options.to_dict()
-        response = self.api.request("POST", "/recognitions/task/file", files=files, data=data).json()
+        response = self.api.request("POST", "/recognitions/task/file", files=files, data=data, timeout=timeouts).json()
         return Task(api=self.api, id_=response['id'], data=response)
 
     def send_link(self, url: str, options: RecognizeOptions) -> Task:
